@@ -7,14 +7,14 @@ const readNotes = (title) => {
 
   debugger
   if (note) {
-      console.log(chalk.blue.inverse(note.title + ':' + note.body))
+      console.log(chalk.blue.inverse(`${note.title} : ${note.body}`))
       console.log(note.body)
   } else {
     console.log(chalk.red.inverse('No note found'))
   }
 }
 
-const addNote = (title,body) => {
+const addNote = (title, body) => {
   const notes = loadNotes()
   const duplicateNote = notes.find((note)=> note.title === title)
   if (!duplicateNote) {
