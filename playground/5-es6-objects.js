@@ -2,7 +2,7 @@ const name = 'Andres'
 const userAge = 27
 
 const user = {
-  name,
+  name, //Shorthand property
   age: userAge,
   location: 'Medellin'
 }
@@ -19,8 +19,11 @@ const product = {
   rating: 4.2
 }
 
+// const label = product.label
+// const stock = product.stock
 
-const {label:productLable,price,stock,salePrice, rating = 5} = product
+//rating: 5 would just take effect when there is not a property in the object that matches the attribute
+const {label:productLable, price, stock, salePrice, rating = 5} = product
 
 console.log(productLable),
 console.log(price),

@@ -9,7 +9,7 @@
 // const square = (x) => x*x
 
 // console.log(square(2))
-
+/*
 const event = {
   name: 'Birthday party',
   guestList: ['Andres', 'Juan', 'Pedro'],
@@ -24,3 +24,4 @@ const event = {
 }
 
 event.printGuestList()
+*/
