@@ -4,7 +4,6 @@ body {
     max-width: 650px;
     margin: 0 auto;
     padding: 0 16px;
-
     display: flex;
     flex-direction: column;
     min-height: 100vh;
@@ -12,14 +11,13 @@ body {
 
 .main-content {
     flex-grow: 1;
-
 }
 
 footer {
     color: #888888;
     border-top: 1px solid #eeeeeeee;
     margin-top: 16px;
-    padding: 16px;
+    padding: 16px 0;
 }
 
 header {
@@ -28,6 +26,7 @@ header {
 }
 
 h1 {
+    color: #333333;;
     font-size: 64px;
     margin-bottom:  16px;
 }
@@ -42,3 +41,15 @@ header a {
     width:250px;
 }
 
+input{
+    border: 1px solid #cccccc;
+    padding: 8px;
+}
+
+button {
+    cursor: pointer;
+    border: 1px solid #888888;
+    background: #888888;
+    color: white;
+    padding: 8px;
+}

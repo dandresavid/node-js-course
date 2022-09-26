@@ -4,7 +4,7 @@ const hbs = require('hbs')
 const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 
-console.log(path.join(__dirname, '../public'))
+//console.log(path.join(__dirname, '../public'))
 
 const app = express()
 
@@ -23,7 +23,7 @@ app.use(express.static(publicDirectoryPath))
 
 app.get('', (req, res) => {
   res.render('index',{
-    title: 'Wheather app',
+    title: 'Weather app',
     name: 'Andres'
   })
 })
@@ -45,7 +45,7 @@ app.get('/help', (req, res) => {
 app.get('/weather',(req, res) => {
   if (!req.query.address) {
     return res.send({
-      error: 'Address not provided'
+      error: 'You must provide an address'
     })
   }
   const address = req.query.address
@@ -53,12 +53,12 @@ app.get('/weather',(req, res) => {
     if  (error){
       return error
     }
-    forecast(latitude,longitude, (error, forecastdata) => {
+    forecast(latitude,longitude, (error, forecastData) => {
       if (error) {
         return error
       }
       res.send({
-        forecastdata: forecastdata,
+        forecast: forecastData,
         location: location,
         address: address
       })
@@ -81,7 +81,7 @@ app.get('/help/*', (req, res) => {
   res.render('404', {
     title: '404',
     name: 'Andres',
-    erroMessage: 'help article not found',
+    errorMessage: 'help article not found'
   })
 })
 
@@ -89,7 +89,7 @@ app.get('*',(req,res) => {
   res.render('404', {
     title: '404',
     name: 'Andres',
-    erroMessage: 'My 404 page'
+    errorMessage: 'My 404 page'
   })
 })
 

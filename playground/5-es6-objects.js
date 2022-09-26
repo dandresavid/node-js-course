@@ -30,7 +30,7 @@ console.log(price),
 console.log(salePrice)
 console.log(rating)
 
-const transation = (type, {label,stock} = {}) => {
+const transation = (type, {label,stock = 0} = {}) => {
   console.log(type,label,stock)
 }
 
