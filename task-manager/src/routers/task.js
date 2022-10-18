@@ -1,6 +1,7 @@
 const express = require('express')
 const Task = require('../models/task')
 const router = new express.Router()
+const bcrypt = require('bcryptjs')
 
 router.post('/tasks', async (req,res) =>{
     const task = new Task(req.body)
@@ -35,16 +36,21 @@ router.get('/tasks/:id', async (req,res) =>{
 })
 
 router.patch('/tasks/:id', async(req,res) =>{
-    updates = Object.keys(req.body)
-    allowedValues = ['description', 'completed']
-    isValidOperation = updates.every((update) => allowedValues.includes(update))
+    const updates = Object.keys(req.body)
+    const allowedValues = ['description', 'completed']
+    const isValidOperation = updates.every((update) => allowedValues.includes(update))
 
     if(!isValidOperation) {
         return res.status(400).send({error : 'Incorrect Values'})
     }
 
     try{
-        const task = await Task.findByIdAndUpdate(req.params.id, req.body , {new: true, runValidators: true})
+        const task  = await Task.findById(req.params.id)
+        updates.forEach((update)=>{
+            task[update] = req.body[update]
+        })
+        await task.save()
+        //const task = await Task.findByIdAndUpdate(req.params.id, req.body , {new: true, runValidators: true})
         if (!task) {
             return res.status(404).send({'error': 'Task not found'})
         }
