@@ -1,7 +1,5 @@
 const express = require('express')
 require('./db/mongoose')
-const User = require('./models/user')
-const Task = require('./models/task')
 const userRouter = require('./routers/user')
 const taskRouter = require('./routers/task')
 const bcrypt = require('bcryptjs')
@@ -32,14 +30,16 @@ app.listen(port, () => {
     console.log('Server is up on port ' + port)
 })
 
-const jwt = require('jsonwebtoken')
+const User = require('./models/user')
+const Task = require('./models/task')
 
-const myfunction = async () =>{
-    const token = await jwt.sign({_id: 'abc123'}, 'Thisismytoken', {expiresIn: '7 days'})
-    console.log(token)
+const main =async () =>{
+    // const task = await Task.findById('634f6993f0224284f3b4503a')
+    // await task.populate('owner')
+    // console.log(task.owner)
 
-    const data = jwt.verify(token, 'Thisismytoken')
-    console.log(data)
+    const user = await User.findById('634f68beab4fc32b569b0fb1')
+    await user.populate('tasks')
+    console.log(user.tasks)
 }
-
-myfunction()
+main()
